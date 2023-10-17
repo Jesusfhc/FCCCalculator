@@ -4,6 +4,7 @@ import Button from './components/Button';
 import Screen from './components/Screen';
 import ClearButton from './components/ClearButton';
 import { useState } from 'react';
+import {evaluate} from 'mathjs';
 
 function App() {
 
@@ -14,8 +15,13 @@ function App() {
   };
 
   const calcularResultado = () => {
-    setInput()
-  }
+    if (input) {
+      setInput(evaluate(input))
+    } else {
+      alert('Mugiwara No has colocado nada para calcular')
+    }
+    
+  };
 
   return (
 
@@ -50,7 +56,7 @@ function App() {
           <Button manejarClick={agregarInput}>*</Button>
         </div>
         <div className='fila'>
-          <Button manejarClick={calcular}>=</Button>
+          <Button manejarClick={calcularResultado}>=</Button>
           <Button manejarClick={agregarInput}>0</Button>
           <Button manejarClick={agregarInput}>.</Button>
           <Button manejarClick={agregarInput}>/</Button>
